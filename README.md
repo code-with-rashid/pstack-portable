@@ -11,14 +11,21 @@
 > **[`portable/USAGE.md`](./portable/USAGE.md) — install it, configure it, and actually use it.**
 > Read that first; the two commands below are only the first thirty seconds of it.
 >
-> ```
-> /plugin marketplace add code-with-rashid/pstack-portable
-> /plugin install pstack@pstack-portable
+> In a terminal:
+>
+> ```bash
+> claude plugin marketplace add code-with-rashid/pstack-portable
+> claude plugin install pstack@pstack-portable
 > ```
 >
-> Then, in a new session, `/pstack:setup-pstack` once, and `/pstack:poteto-mode <your task>` to
-> work. Note the `/pstack:` prefix, and note that only 5 of the 44 skills can self-trigger — the
-> rest, `poteto-mode` included, run only when you type their name. `USAGE.md` explains why.
+> Already inside a Claude Code session? `/plugin marketplace add code-with-rashid/pstack-portable`
+> then `/plugin install pstack@pstack-portable` does the same thing through the interactive panel.
+> Both install at user scope.
+>
+> Then start a new session, run `/pstack:setup-pstack` once, and work with
+> `/pstack:poteto-mode <your task>`. Note the `/pstack:` prefix, and note that only 5 of the 44
+> skills can self-trigger — the rest, `poteto-mode` included, run only when you type their name.
+> `USAGE.md` explains why.
 >
 > ### The rest of the fork
 >

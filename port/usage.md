@@ -9,20 +9,25 @@ unmodified upstream.
 
 ## 1. Install
 
-In an interactive Claude Code session:
+From a terminal, whether or not Claude Code is running:
+
+```bash
+claude plugin marketplace add code-with-rashid/pstack-portable
+claude plugin install pstack@pstack-portable
+```
+
+If you are already inside a Claude Code session, the same thing through the interactive panel:
 
 ```
 /plugin marketplace add code-with-rashid/pstack-portable
 /plugin install pstack@pstack-portable
 ```
 
-`/plugin` opens an interactive panel, so it does not work in `claude -p`. From a script or a
-non-interactive session, use the CLI instead:
+Both default to user scope, so they install to the same place. The slash form opens a panel and
+therefore does not work in `claude -p`; the CLI form works everywhere, including scripts and CI.
 
-```bash
-claude plugin marketplace add code-with-rashid/pstack-portable
-claude plugin install pstack@pstack-portable
-```
+Note `pstack@pstack-portable`, not bare `pstack` — the part after `@` names the marketplace the
+plugin comes from.
 
 Confirm it landed:
 
