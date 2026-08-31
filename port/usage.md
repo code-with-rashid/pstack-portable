@@ -80,6 +80,25 @@ Type it at the start of each task, or tell the agent to stay in it for the conve
 
 If you are unsure of a name, type `/pstack:` and let autocomplete list them.
 
+Names are lowercase and hyphenated, matching the skill's directory: `/pstack:poteto-mode`, not
+`/pstack:Poteto` or `/pstack:Poteto Mode`. Upstream sets a display name (`Poteto Mode`) in that
+skill's frontmatter, which Cursor accepts; this build rewrites it, because a name that isn't
+lowercase-hyphenated is rejected outright and the skill then never appears as a command at all.
+
+### If a skill isn't recognized
+
+1. **Check the name.** Lowercase, hyphenated, prefixed: `/pstack:poteto-mode`.
+2. **Check you are current.** Installs made before this fix shipped carry the broken name.
+   `claude plugin marketplace update pstack-portable` then
+   `claude plugin install pstack@pstack-portable`, and start a new session.
+3. **Check your surface.** Plugin slash commands are most reliable in the Claude Code terminal.
+   Desktop, web, and IDE surfaces may not expose all of them, and report
+   "Some commands only work in the Claude Code terminal."
+
+Where slash commands are unavailable, the same behaviour is reachable through the subagent:
+ask for `subagent_type: pstack:poteto-agent`. It reads `poteto-mode`'s `SKILL.md` in full,
+principles index included, before doing any work — which is the whole point of the mode.
+
 ## 4. Your first real task
 
 Give it a goal and a way to check the goal, in your own words. You do not need to name a

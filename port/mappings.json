@@ -4,11 +4,15 @@
   "note": "Rules apply in order, literally, longest-match-first within a group. safetyNet rules are catch-alls that legitimately match nothing once the specific rules above them have fired.",
   "rules": [
     {
+      "group": "frontmatter",
+      "find": "name: Poteto Mode",
+      "replace": "name: poteto-mode"
+    },
+    {
       "group": "models-config",
       "find": "~/.cursor/rules/pstack-models.mdc",
       "replace": "~/.config/pstack/models.md"
     },
-
     {
       "group": "transcripts",
       "find": "Transcripts live at `~/.cursor/projects/<slug>/agent-transcripts/<uuid>/<uuid>.jsonl`, where `<slug>` is",
@@ -65,7 +69,6 @@
       "find": "(the system prompt names the path;",
       "replace": "(resolve the path from `HARNESS.md`;"
     },
-
     {
       "group": "skill-paths",
       "find": "~/.cursor/skills/",
@@ -86,7 +89,6 @@
       "find": ".cursor/skills/",
       "replace": "<project-skills>/"
     },
-
     {
       "group": "models",
       "find": "claude-fable-5-thinking-max",
@@ -107,7 +109,6 @@
       "find": "claude-opus-5-thinking-xhigh",
       "replace": "pstack:alt-judgment"
     },
-
     {
       "group": "subagents",
       "find": "subagent_type: generalPurpose",
@@ -145,7 +146,6 @@
       "find": "Use `environment: \"local\"` only when",
       "replace": "Where cloud execution exists, keep the worker local only when"
     },
-
     {
       "group": "ask-user",
       "find": "About to `AskQuestion` on",
@@ -172,7 +172,6 @@
       "find": "AskQuestion",
       "replace": "the ask-user tool"
     },
-
     {
       "group": "sibling-plugins",
       "find": "(from `cursor-team-kit`)",

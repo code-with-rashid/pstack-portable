@@ -75,6 +75,25 @@ with open(destination, "w") as handle:
 print(f"  plugin.json at version {upstream['version']}")
 PYTHON
 
+echo "-- validating skill names"
+invalid=""
+for skill in "$OUT_DIR"/skills/*/SKILL.md; do
+  dir="$(basename "$(dirname "$skill")")"
+  name="$(sed -n 's/^name: *//p' "$skill" | head -1)"
+  if ! printf '%s' "$name" | grep -qE '^[a-z0-9]+(-[a-z0-9]+)*$' || [ "$name" != "$dir" ]; then
+    invalid="$invalid  $dir -> name: \"$name\"\n"
+  fi
+done
+if [ -n "$invalid" ]; then
+  echo >&2
+  echo "BUILD FAILED: every skill name must be lowercase-hyphenated and equal its directory." >&2
+  echo "A name the harness rejects makes the skill unregisterable, so it silently never appears." >&2
+  echo >&2
+  printf "$invalid" >&2
+  exit 1
+fi
+echo "  all $(ls -1d "$OUT_DIR"/skills/*/ | wc -l | tr -d ' ') skill names valid"
+
 echo "-- drift check"
 FORBIDDEN='\.cursor/|~/\.cursor|AskQuestion|generalPurpose|agent-transcripts|claude-fable-5-thinking-max|gpt-5\.6-sol-max|grok-4\.6-fast-xhigh|claude-opus-5-thinking-xhigh|\.mdc'
 drift="$(grep -rnE "$FORBIDDEN" "$OUT_DIR" \
