@@ -89,8 +89,8 @@ lowercase-hyphenated is rejected outright and the skill then never appears as a 
 
 1. **Check the name.** Lowercase, hyphenated, prefixed: `/pstack:poteto-mode`.
 2. **Check you are current.** Installs made before this fix shipped carry the broken name.
-   `claude plugin marketplace update pstack-portable` then
-   `claude plugin install pstack@pstack-portable`, and start a new session.
+   Refresh with the three commands in [Updating](#7-updating-and-removing) — the uninstall step
+   matters — then start a new session.
 3. **Check your surface.** Plugin slash commands are most reliable in the Claude Code terminal.
    Desktop, web, and IDE surfaces may not expose all of them, and report
    "Some commands only work in the Claude Code terminal."
@@ -153,8 +153,14 @@ None of these break the skills; they degrade a step and should say so when they 
 
 ```bash
 claude plugin marketplace update pstack-portable
+claude plugin uninstall pstack
 claude plugin install pstack@pstack-portable
 ```
+
+The uninstall is not optional. `install` is a no-op when the plugin is already present, and the
+plugin cache is keyed by version — which tracks upstream's number, so a fix in the port layer
+alone does not change it. Without the uninstall you keep running the old files while the
+marketplace reports itself up to date. Start a new session afterwards.
 
 To remove it:
 
