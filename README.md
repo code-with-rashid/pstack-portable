@@ -6,7 +6,23 @@
 > resolves all of it through a single adapter table, so the skills run in Claude Code and other
 > harnesses too.
 >
-> - **[`portable/`](./portable/)** — the generated, harness-neutral plugin. Install this.
+> ### Start here
+>
+> **[`portable/USAGE.md`](./portable/USAGE.md) — install it, configure it, and actually use it.**
+> Read that first; the two commands below are only the first thirty seconds of it.
+>
+> ```
+> /plugin marketplace add code-with-rashid/pstack-portable
+> /plugin install pstack@pstack-portable
+> ```
+>
+> Then, in a new session, `/pstack:setup-pstack` once, and `/pstack:poteto-mode <your task>` to
+> work. Note the `/pstack:` prefix, and note that only 5 of the 44 skills can self-trigger — the
+> rest, `poteto-mode` included, run only when you type their name. `USAGE.md` explains why.
+>
+> ### The rest of the fork
+>
+> - **[`portable/`](./portable/)** — the generated, harness-neutral plugin. This is what installs.
 > - **[`portable/HARNESS.md`](./portable/HARNESS.md)** — the adapter table: what every token
 >   resolves to per harness, and which capabilities to guard.
 > - **[`port/`](./port/)** — the generator, and the only place this fork diverges.
@@ -14,12 +30,6 @@
 > Everything below this note is upstream's README, unmodified. The tree at the repo root is kept
 > byte-identical to upstream so that syncing never conflicts; `portable/` is generated from it and
 > is never edited by hand. See [`port/README.md`](./port/README.md) for the sync ritual.
->
-> Install in Claude Code:
-> ```
-> /plugin marketplace add code-with-rashid/pstack-portable
-> /plugin install pstack
-> ```
 <!-- fork-note:end -->
 
 ---

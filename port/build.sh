@@ -51,8 +51,9 @@ python3 "$PORT_DIR/apply.py" "$PORT_DIR/mappings.json" "$OUT_DIR" md
 echo "-- injecting the portability preamble"
 python3 "$PORT_DIR/inject.py" "$PORT_DIR/preamble.md" "$OUT_DIR"
 
-echo "-- writing HARNESS.md and the plugin manifest"
+echo "-- writing HARNESS.md, USAGE.md and the plugin manifest"
 cp "$PORT_DIR/harness.md" "$OUT_DIR/HARNESS.md"
+cp "$PORT_DIR/usage.md" "$OUT_DIR/USAGE.md"
 mkdir -p "$OUT_DIR/.claude-plugin"
 python3 - "$REPO_ROOT/.cursor-plugin/plugin.json" "$OUT_DIR/.claude-plugin/plugin.json" <<'PYTHON'
 import json, sys
@@ -78,7 +79,7 @@ echo "-- drift check"
 FORBIDDEN='\.cursor/|~/\.cursor|AskQuestion|generalPurpose|agent-transcripts|claude-fable-5-thinking-max|gpt-5\.6-sol-max|grok-4\.6-fast-xhigh|claude-opus-5-thinking-xhigh|\.mdc'
 drift="$(grep -rnE "$FORBIDDEN" "$OUT_DIR" \
   --include='*.md' --include='*.sh' --include='*.ts' --include='*.json' \
-  --exclude='HARNESS.md' --exclude='bun.lock' \
+  --exclude='HARNESS.md' --exclude='USAGE.md' --exclude='bun.lock' \
   | grep -vE -f "$PORT_DIR/allowlist.txt" || true)"
 if [ -n "$drift" ]; then
   echo
