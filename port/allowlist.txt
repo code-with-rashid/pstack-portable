@@ -1,0 +1,6 @@
+Cursor only
+Cursor loads
+cursor-team-kit
+Cursor built-in
+a Cursor built-in
+HOME/.claude/projects/\$slug

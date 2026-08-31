@@ -1,0 +1,188 @@
+{
+  "version": 1,
+  "tokenDocs": "portable/HARNESS.md",
+  "note": "Rules apply in order, literally, longest-match-first within a group. safetyNet rules are catch-alls that legitimately match nothing once the specific rules above them have fired.",
+  "rules": [
+    {
+      "group": "models-config",
+      "find": "~/.cursor/rules/pstack-models.mdc",
+      "replace": "~/.config/pstack/models.md"
+    },
+
+    {
+      "group": "transcripts",
+      "find": "Transcripts live at `~/.cursor/projects/<slug>/agent-transcripts/<uuid>/<uuid>.jsonl`, where `<slug>` is",
+      "replace": "Transcripts live under `<transcripts-dir>`, one `.jsonl` per session (`HARNESS.md` gives the exact layout per harness). `<slug>` in that path is"
+    },
+    {
+      "group": "transcripts",
+      "find": "~/.cursor/projects/",
+      "replace": "<transcripts-root>/"
+    },
+    {
+      "group": "transcripts",
+      "find": "`agent-transcripts/` directory",
+      "replace": "transcript directory"
+    },
+    {
+      "group": "transcripts",
+      "find": "<agent-transcripts>",
+      "replace": "<transcripts-dir>"
+    },
+    {
+      "group": "transcripts",
+      "find": "agent-transcripts/",
+      "replace": "<transcripts-dir>/"
+    },
+    {
+      "group": "transcripts",
+      "safetyNet": true,
+      "find": "agent-transcripts",
+      "replace": "<transcripts-dir>"
+    },
+    {
+      "group": "transcripts",
+      "find": "The system prompt names the active workspace's transcript directory;",
+      "replace": "Resolve the active workspace's transcript directory from `HARNESS.md`, which some harnesses also name in the system prompt;"
+    },
+    {
+      "group": "transcripts",
+      "find": "The system prompt names the workspace's transcript directory.",
+      "replace": "Resolve the workspace's transcript directory from `HARNESS.md`, which some harnesses also name in the system prompt."
+    },
+    {
+      "group": "transcripts",
+      "find": "(the system prompt names this path)",
+      "replace": "(resolve the path from `HARNESS.md`)"
+    },
+    {
+      "group": "transcripts",
+      "find": "(the system prompt names the path)",
+      "replace": "(resolve the path from `HARNESS.md`)"
+    },
+    {
+      "group": "transcripts",
+      "find": "(the system prompt names the path;",
+      "replace": "(resolve the path from `HARNESS.md`;"
+    },
+
+    {
+      "group": "skill-paths",
+      "find": "~/.cursor/skills/",
+      "replace": "<user-skills>/"
+    },
+    {
+      "group": "skill-paths",
+      "find": "~/.cursor/plugins/",
+      "replace": "<plugins-dir>/"
+    },
+    {
+      "group": "skill-paths",
+      "find": ".cursor/worktrees/",
+      "replace": "<worktrees-dir>/"
+    },
+    {
+      "group": "skill-paths",
+      "find": ".cursor/skills/",
+      "replace": "<project-skills>/"
+    },
+
+    {
+      "group": "models",
+      "find": "claude-fable-5-thinking-max",
+      "replace": "pstack:judgment"
+    },
+    {
+      "group": "models",
+      "find": "gpt-5.6-sol-max",
+      "replace": "pstack:precise-code"
+    },
+    {
+      "group": "models",
+      "find": "grok-4.6-fast-xhigh",
+      "replace": "pstack:fast-code"
+    },
+    {
+      "group": "models",
+      "find": "claude-opus-5-thinking-xhigh",
+      "replace": "pstack:alt-judgment"
+    },
+
+    {
+      "group": "subagents",
+      "find": "subagent_type: generalPurpose",
+      "replace": "subagent_type: general-purpose"
+    },
+    {
+      "group": "subagents",
+      "find": "generalPurpose",
+      "replace": "general-purpose"
+    },
+    {
+      "group": "subagents",
+      "find": "the Task tool",
+      "replace": "your harness's subagent-spawn tool"
+    },
+    {
+      "group": "subagents",
+      "safetyNet": true,
+      "find": "Task tool",
+      "replace": "subagent-spawn tool"
+    },
+    {
+      "group": "subagents",
+      "safetyNet": true,
+      "find": "Task `model`",
+      "replace": "the subagent `model` field"
+    },
+    {
+      "group": "subagents",
+      "find": "`environment: \"cloud\"`",
+      "replace": "`environment: \"cloud\"` (only where your harness has cloud subagents; omit the field otherwise)"
+    },
+    {
+      "group": "subagents",
+      "find": "Use `environment: \"local\"` only when",
+      "replace": "Where cloud execution exists, keep the worker local only when"
+    },
+
+    {
+      "group": "ask-user",
+      "find": "About to `AskQuestion` on",
+      "replace": "About to ask the user on"
+    },
+    {
+      "group": "ask-user",
+      "find": "Use the `AskQuestion` tool (structured multi-choice)",
+      "replace": "Use your harness's structured multi-choice question tool"
+    },
+    {
+      "group": "ask-user",
+      "find": "`AskQuestion`",
+      "replace": "the ask-user tool"
+    },
+    {
+      "group": "ask-user",
+      "find": "AskQuestion state",
+      "replace": "ask-user state"
+    },
+    {
+      "group": "ask-user",
+      "safetyNet": true,
+      "find": "AskQuestion",
+      "replace": "the ask-user tool"
+    },
+
+    {
+      "group": "sibling-plugins",
+      "find": "(from `cursor-team-kit`)",
+      "replace": "(from `cursor-team-kit`; Cursor only, skip when unavailable)"
+    },
+    {
+      "group": "sibling-plugins",
+      "safetyNet": true,
+      "find": "ship in the `cursor-team-kit` plugin",
+      "replace": "ship in the `cursor-team-kit` plugin (Cursor only)"
+    }
+  ]
+}

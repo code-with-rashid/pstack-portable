@@ -1,3 +1,29 @@
+<!-- fork-note:start -->
+> ## This fork: pstack for any harness
+>
+> Upstream pstack is written for Cursor — its skills hard-code Cursor paths (`~/.cursor/rules/…`),
+> tool names (`AskQuestion`, `generalPurpose`), and model slugs. This fork adds a build that
+> resolves all of it through a single adapter table, so the skills run in Claude Code and other
+> harnesses too.
+>
+> - **[`portable/`](./portable/)** — the generated, harness-neutral plugin. Install this.
+> - **[`portable/HARNESS.md`](./portable/HARNESS.md)** — the adapter table: what every token
+>   resolves to per harness, and which capabilities to guard.
+> - **[`port/`](./port/)** — the generator, and the only place this fork diverges.
+>
+> Everything below this note is upstream's README, unmodified. The tree at the repo root is kept
+> byte-identical to upstream so that syncing never conflicts; `portable/` is generated from it and
+> is never edited by hand. See [`port/README.md`](./port/README.md) for the sync ritual.
+>
+> Install in Claude Code:
+> ```
+> /plugin marketplace add code-with-rashid/pstack-portable
+> /plugin install pstack
+> ```
+<!-- fork-note:end -->
+
+---
+
 > **Mirror** of [`cursor/plugins/pstack`](https://github.com/cursor/plugins/tree/main/pstack) — kept in sync for standalone use.
 > See also [`backnotprop/bro`](https://github.com/backnotprop/bro), referenced by the [`/bro`](./skills/bro/SKILL.md) skill below.
 

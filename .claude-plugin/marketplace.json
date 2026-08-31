@@ -1,0 +1,17 @@
+{
+  "name": "pstack-portable",
+  "owner": {
+    "name": "Rashid Mahmood"
+  },
+  "metadata": {
+    "description": "Harness-portable build of pstack, generated from the pristine upstream tree.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "pstack",
+      "source": "./portable",
+      "description": "pstack's rigorous agent workflows, with Cursor-specific paths, tool names, and model slugs resolved through HARNESS.md so they run in any harness."
+    }
+  ]
+}
