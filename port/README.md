@@ -29,8 +29,14 @@ subdirectory of `cursor/plugins`. The mirror ships squashed snapshots, so a merg
 bulk commit rather than a readable series — which is exactly why nothing here depends on
 reading upstream history to resolve a conflict.
 
-If the build fails, upstream introduced a harness-specific reference that no rule covers. The
-error names the file and line. Add a rule to `mappings.json`, or allow the line in
+The build has two gates, both fail-closed. **Name validation** rejects any skill whose `name`
+is not lowercase-hyphenated and equal to its directory — upstream ships a Cursor display name
+(`Poteto Mode`) that harnesses following the Agent Skills rule reject outright, which makes the
+skill silently unregisterable. **The drift check** rejects any harness-specific reference that no
+mapping covers.
+
+If the build fails on drift, upstream introduced a reference no rule covers. The error names the
+file and line. Add a rule to `mappings.json`, or allow the line in
 `allowlist.txt` when the reference is a deliberate Cursor-only mention, then rebuild.
 
 ## Inputs

@@ -83,5 +83,12 @@ Guard each of these; skip the step and say you skipped it rather than faking the
 - **Sticky mode.** Upstream's frontmatter (`mode: true`, `reminder:`) keeps `/poteto-mode`
   applied across turns in Cursor. Other harnesses ignore those keys, so the mode applies to
   the invocation only. Re-invoke it, or ask the agent to stay in it for the conversation.
-- **`disable-model-invocation`.** Cursor uses it to make a skill explicit-invocation-only.
-  Harnesses that ignore it may auto-trigger these skills more eagerly than upstream intends.
+- **`disable-model-invocation`.** Marks a skill explicit-invocation-only. Upstream sets it on 39
+  of the 44 skills, `poteto-mode` included, so on a harness that honours it (Claude Code does)
+  those skills never self-trigger and run only when the user names them. Only `how`, `why`,
+  `unslop`, `typescript-best-practices`, and `setup-pstack` can fire from prose. A harness that
+  ignores the key instead auto-triggers all 44 more eagerly than upstream intends.
+- **Skill naming.** The Agent Skills rule is `^[a-z0-9]+(-[a-z0-9]+)*$`, matching the skill's
+  directory. Cursor also accepts a display name, and upstream uses one (`name: Poteto Mode`); a
+  harness enforcing the rule rejects that skill outright and it silently never registers. This
+  build normalizes names and fails its own build if any name violates the rule.

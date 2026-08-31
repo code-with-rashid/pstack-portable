@@ -1,6 +1,6 @@
 {
   "name": "pstack",
-  "description": "if you want to go fast, go deep first. pstack helps you write less, but higher quality code. rigorous agent workflows you can parallelize with confidence.",
+  "description": "if you want to go fast, go deep first. pstack helps you write less, but higher quality code. rigorous agent workflows you can parallelize with confidence. [portable build: skills are namespaced /pstack:<name>; environment specifics resolve through HARNESS.md; USAGE.md is the setup guide]",
   "version": "0.14.1",
   "author": {
     "name": "Lauren Tan"

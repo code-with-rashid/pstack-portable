@@ -61,7 +61,9 @@ source, destination = sys.argv[1], sys.argv[2]
 upstream = json.load(open(source))
 manifest = {
     "name": "pstack",
-    "description": upstream["description"],
+    "description": upstream["description"]
+    + " [portable build: skills are namespaced /pstack:<name>; environment specifics"
+      " resolve through HARNESS.md; USAGE.md is the setup guide]",
     "version": upstream["version"],
     "author": upstream["author"],
     "homepage": upstream["homepage"],

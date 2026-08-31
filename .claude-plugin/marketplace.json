@@ -11,7 +11,7 @@
     {
       "name": "pstack",
       "source": "./portable",
-      "description": "pstack's rigorous agent workflows, with Cursor-specific paths, tool names, and model slugs resolved through HARNESS.md so they run in any harness."
+      "description": "pstack's rigorous agent workflows, with Cursor-specific paths, tool names, and model slugs resolved through HARNESS.md so they run in any harness. Skills are namespaced /pstack:<name>; start with USAGE.md."
     }
   ]
 }
