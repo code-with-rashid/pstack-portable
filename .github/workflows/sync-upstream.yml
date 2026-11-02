@@ -1,0 +1,50 @@
+name: sync-upstream
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: sync-upstream
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Merge upstream and rebuild portable/
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/backnotprop/pstack.git
+          git fetch upstream main
+
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo "Already up to date"; exit 0
+          fi
+
+          sed -n '/<!-- fork-note:start -->/,/<!-- fork-note:end -->/p' README.md > "$RUNNER_TEMP/fork-note.md"
+          if [ ! -s "$RUNNER_TEMP/fork-note.md" ]; then
+            echo "::error::README.md has no fork-note block"; exit 1
+          fi
+
+          if ! git merge --no-edit upstream/main; then
+            conflicted="$(git diff --name-only --diff-filter=U)"
+            if [ "$conflicted" != "README.md" ]; then
+              echo "::error::Conflicts outside README: $conflicted"; exit 1
+            fi
+          fi
+          { cat "$RUNNER_TEMP/fork-note.md"; printf '\n---\n\n'; git show upstream/main:README.md; } > README.md
+          git add README.md
+          git diff --cached --quiet && [ ! -f .git/MERGE_HEAD ] || git commit --no-edit -m "Sync upstream pstack"
+
+          ./port/build.sh | tee "$RUNNER_TEMP/build.log"
+          if grep -q 'STALE OVERRIDE' "$RUNNER_TEMP/build.log"; then
+            echo "::error::An overridden upstream file changed; reconcile it and rebuild with --relock"; exit 1
+          fi
+
+          git add -A portable
+          git diff --cached --quiet || git commit -m "Rebuild portable/ from upstream"
+          git push origin HEAD:main
