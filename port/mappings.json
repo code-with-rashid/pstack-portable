@@ -4,19 +4,49 @@
   "note": "Rules apply in order, literally, longest-match-first within a group. safetyNet rules are catch-alls that legitimately match nothing once the specific rules above them have fired.",
   "rules": [
     {
-      "group": "frontmatter",
-      "find": "name: Poteto Mode",
-      "replace": "name: poteto-mode"
+      "group": "cursor-alternatives",
+      "find": "- **Cursor:** `~/.cursor/rules/pstack-models.mdc`, an always-applied rule.\n",
+      "replace": ""
+    },
+    {
+      "group": "cursor-alternatives",
+      "find": "`~/.cursor/rules/pstack-models.mdc` in Cursor, ",
+      "replace": ""
+    },
+    {
+      "group": "cursor-alternatives",
+      "find": "- **Cursor:** `~/.cursor/projects/<slug>/agent-transcripts/<uuid>/<uuid>.jsonl`. `<slug>` is the workspace path with the leading slash dropped and each \"/\" turned into \"-\" (`/Users/you/proj` becomes `Users-you-proj`).\n",
+      "replace": ""
+    },
+    {
+      "group": "cursor-alternatives",
+      "find": "`AskQuestion` in Cursor, ",
+      "replace": ""
+    },
+    {
+      "group": "cursor-alternatives",
+      "find": " (`generalPurpose` in Cursor)",
+      "replace": ""
+    },
+    {
+      "group": "cursor-alternatives",
+      "find": "Cursor `Task`, ",
+      "replace": ""
     },
     {
       "group": "models-config",
-      "find": "~/.cursor/rules/pstack-models.mdc",
-      "replace": "~/.config/pstack/models.md"
+      "find": "In Claude Code, if that file is missing, read `~/.agents/pstack-models.md` instead, where older versions of this skill wrote it.",
+      "replace": "In Claude Code, if that file is missing, read `~/.agents/pstack-models.md` instead, where older versions of this skill wrote it. In any harness, if neither exists, read `~/.config/pstack/models.md`, where older portable builds wrote it, and carry its choices over."
     },
     {
-      "group": "transcripts",
-      "find": "Transcripts live at `~/.cursor/projects/<slug>/agent-transcripts/<uuid>/<uuid>.jsonl`, where `<slug>` is",
-      "replace": "Transcripts live under `<transcripts-dir>`, one `.jsonl` per session (`HARNESS.md` gives the exact layout per harness). `<slug>` in that path is"
+      "group": "models-config",
+      "find": "So `unlimited` turns `claude-opus-5-5-xhigh` into `claude-opus-5-5-max`. Grok slugs top out at `xhigh`, so under `unlimited` the fallback puts Grok at `xhigh` and keeps `grok-4.7-xhigh-fast` as it is. `large` keeps both defaults. `small` turns them into `claude-opus-5-5-medium` and `grok-4.7-medium-fast`.",
+      "replace": "In Cursor, for example, `unlimited` raises the Opus default from `xhigh` to `max`, Grok stays at `xhigh` because that is its top, `large` keeps both defaults, and `small` lowers both to `medium`. Where model identifiers carry no effort token, as in Claude Code, the budget leaves every identifier unchanged; still record it on the `# budget` line."
+    },
+    {
+      "group": "models-config",
+      "find": "Overwrite the whole file so re-runs stay idempotent. Shape:",
+      "replace": "Overwrite the whole file so re-runs stay idempotent. Write real model identifiers, never the `pstack:` role tokens in the shape below; resolve each token through `HARNESS.md`. Shape:"
     },
     {
       "group": "transcripts",
@@ -35,39 +65,9 @@
     },
     {
       "group": "transcripts",
-      "find": "agent-transcripts/",
-      "replace": "<transcripts-dir>/"
-    },
-    {
-      "group": "transcripts",
       "safetyNet": true,
       "find": "agent-transcripts",
       "replace": "<transcripts-dir>"
-    },
-    {
-      "group": "transcripts",
-      "find": "The system prompt names the active workspace's transcript directory;",
-      "replace": "Resolve the active workspace's transcript directory from `HARNESS.md`, which some harnesses also name in the system prompt;"
-    },
-    {
-      "group": "transcripts",
-      "find": "The system prompt names the workspace's transcript directory.",
-      "replace": "Resolve the workspace's transcript directory from `HARNESS.md`, which some harnesses also name in the system prompt."
-    },
-    {
-      "group": "transcripts",
-      "find": "(the system prompt names this path)",
-      "replace": "(resolve the path from `HARNESS.md`)"
-    },
-    {
-      "group": "transcripts",
-      "find": "(the system prompt names the path)",
-      "replace": "(resolve the path from `HARNESS.md`)"
-    },
-    {
-      "group": "transcripts",
-      "find": "(the system prompt names the path;",
-      "replace": "(resolve the path from `HARNESS.md`;"
     },
     {
       "group": "skill-paths",
@@ -91,23 +91,13 @@
     },
     {
       "group": "models",
-      "find": "claude-fable-5-thinking-max",
+      "find": "claude-opus-5-5-xhigh",
       "replace": "pstack:judgment"
     },
     {
       "group": "models",
-      "find": "gpt-5.6-sol-max",
-      "replace": "pstack:precise-code"
-    },
-    {
-      "group": "models",
-      "find": "grok-4.6-fast-xhigh",
+      "find": "grok-4.7-xhigh-fast",
       "replace": "pstack:fast-code"
-    },
-    {
-      "group": "models",
-      "find": "claude-opus-5-thinking-xhigh",
-      "replace": "pstack:alt-judgment"
     },
     {
       "group": "subagents",
@@ -118,11 +108,6 @@
       "group": "subagents",
       "find": "generalPurpose",
       "replace": "general-purpose"
-    },
-    {
-      "group": "subagents",
-      "find": "the Task tool",
-      "replace": "your harness's subagent-spawn tool"
     },
     {
       "group": "subagents",
@@ -153,18 +138,8 @@
     },
     {
       "group": "ask-user",
-      "find": "Use the `AskQuestion` tool (structured multi-choice)",
-      "replace": "Use your harness's structured multi-choice question tool"
-    },
-    {
-      "group": "ask-user",
       "find": "`AskQuestion`",
       "replace": "the ask-user tool"
-    },
-    {
-      "group": "ask-user",
-      "find": "AskQuestion state",
-      "replace": "ask-user state"
     },
     {
       "group": "ask-user",

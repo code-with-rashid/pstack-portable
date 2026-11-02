@@ -18,8 +18,9 @@ If your harness is not listed, use the **Any harness** column and adapt.
 | `<plugins-dir>` | `~/.cursor/plugins` | `~/.claude/plugins` | where installed plugins live |
 | `<worktrees-dir>` | `.cursor/worktrees` | `.git/worktrees` or your own convention | where agent worktrees are created |
 
-`<slug>` is the absolute workspace path with the leading slash dropped and every `/` turned
-into `-`, in both Cursor and Claude Code.
+`<slug>` is the absolute workspace path. Cursor drops the leading slash and turns every `/`
+into `-` (`Users-you-proj`). Claude Code turns every character that is not a letter or digit
+into `-`, leading slash included (`-Users-you-proj`).
 
 **If your harness exposes no transcripts**, the skills that mine them (`/recall`, `/reflect`,
 `/automate-me`, `/show-me-your-work`, and the eval and session-pickup playbooks) cannot run
@@ -28,26 +29,27 @@ than inventing a substitute source.
 
 ## Model roles
 
-Upstream hard-codes Cursor router slugs. This build replaces them with role tokens:
+Upstream hard-codes Cursor router slugs as its defaults. This build replaces them with role
+tokens:
 
 | role token | what it is for | Cursor | Claude Code |
 |---|---|---|---|
-| `pstack:judgment` | prose, judgment, the hardest reasoning | `claude-fable-5-thinking-max` | `claude-fable-5` |
-| `pstack:precise-code` | precisely-specified code, bug fixes, perf | `gpt-5.6-sol-max` | `claude-opus-5` |
-| `pstack:fast-code` | fast mechanical code, exploration, swarm workers | `grok-4.6-fast-xhigh` | `claude-sonnet-5` |
-| `pstack:alt-judgment` | a second strong reasoner, for panel diversity | `claude-opus-5-thinking-xhigh` | `claude-opus-5` |
+| `pstack:judgment` | prose, judgment, the hardest reasoning | `claude-opus-5-5-xhigh` | `opus` |
+| `pstack:fast-code` | code, exploration, swarm workers | `grok-4.7-xhigh-fast` | `sonnet` |
 
 Resolution order for any role:
 
-1. The matching line in `~/.config/pstack/models.md`, if the file exists.
+1. The matching line in the pstack settings file, if it exists: `~/.claude/rules/pstack-models.md`
+   in Claude Code, `~/.agents/pstack-models.md` in other harnesses. `/setup-pstack` writes it.
 2. The column above for your harness.
 3. **Omit the subagent `model` field entirely**, so the subagent inherits the parent model.
 
 Step 3 is the important one. Never pass a model string you have not confirmed the harness
 accepts — an unknown slug fails the spawn, and a whole delegation step dies with it.
 
-Unlike Cursor, most harnesses do not auto-load `~/.config/pstack/models.md` into context.
-Read the file explicitly the first time a skill needs a role, then reuse it for the session.
+Claude Code loads `~/.claude/rules/` into every new session. Other harnesses do not load
+`~/.agents/pstack-models.md` on their own: read it the first time a skill needs a role, then
+reuse it for the session.
 
 ### Single-provider harnesses
 

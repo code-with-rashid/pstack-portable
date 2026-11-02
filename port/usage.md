@@ -43,17 +43,19 @@ You should see 44 skills and 2 agents. Start a new session before using them.
 /pstack:setup-pstack
 ```
 
-It detects which models you can actually spawn, asks which one handles each role, and writes
-`~/.config/pstack/models.md`. Roles are things like judgment, precise code, fast code, and the
-review panels.
+It detects which models you can actually spawn, asks for a reasoning budget and which model
+handles each role, and writes the settings file: `~/.claude/rules/pstack-models.md` in Claude
+Code, `~/.agents/pstack-models.md` in other harnesses. Roles are things like judgment, code,
+and the review panels. If you ran it under an older build, it picks up your choices from
+`~/.config/pstack/models.md` and moves them to the new file.
 
 **You can skip this.** Every skill falls back to the per-harness defaults in
 [`HARNESS.md`](./HARNESS.md), and where a role has no model at all the skill omits the model
 field so the subagent inherits your current one. Skipping costs you the multi-model split, not
 correctness.
 
-Unlike Cursor, most harnesses do not auto-load this config. Skills read it on demand, so no
-registration step is needed.
+Claude Code loads the settings file into every new session. Other harnesses don't, and the
+skills read it on demand, so no registration step is needed.
 
 ## 3. How to invoke a skill
 

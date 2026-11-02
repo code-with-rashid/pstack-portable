@@ -97,7 +97,7 @@ fi
 echo "  all $(ls -1d "$OUT_DIR"/skills/*/ | wc -l | tr -d ' ') skill names valid"
 
 echo "-- drift check"
-FORBIDDEN='\.cursor/|~/\.cursor|AskQuestion|generalPurpose|agent-transcripts|claude-fable-5-thinking-max|gpt-5\.6-sol-max|grok-4\.6-fast-xhigh|claude-opus-5-thinking-xhigh|\.mdc'
+FORBIDDEN='\.cursor/|~/\.cursor|AskQuestion|generalPurpose|agent-transcripts|\.mdc|grok-[0-9]|gpt-[5-9]|composer-[0-9]|claude-(opus|sonnet|fable|haiku)-[0-9]'
 drift="$(grep -rnE "$FORBIDDEN" "$OUT_DIR" \
   --include='*.md' --include='*.sh' --include='*.ts' --include='*.json' \
   --exclude='HARNESS.md' --exclude='USAGE.md' --exclude='bun.lock' \
