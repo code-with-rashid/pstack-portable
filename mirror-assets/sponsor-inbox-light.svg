@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="470" height="128" viewBox="0 0 470 128" role="img" aria-labelledby="title desc">
+  <title id="title">Try Plannotator Inbox today</title>
+  <desc id="desc">Card: Plannotator Inbox, plannotator.ai/inbox.</desc>
+  <style>
+    .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif; }
+    .mono { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; }
+    .fg { fill: #0c121a; }
+    .mfg { fill: #4b525d; }
+    .pri { fill: #5537eb; }</style>
+  <rect x="0.5" y="0.5" width="469" height="127" rx="16" fill="#ffffff" stroke="#d4d8de"/>
+
+  <rect x="24" y="24" width="80" height="80" rx="18" fill="#eef1f5"/>
+  <rect x="32" y="32" width="64" height="64" rx="10" fill="#ffffff" stroke="#d4d8de"/>
+  <circle cx="42" cy="43" r="5" fill="#df4300"/>
+  <rect x="53" y="39" width="27" height="4" rx="2" fill="#0c121a" opacity="0.9"/>
+  <rect x="53" y="46" width="26" height="3" rx="1.5" fill="#4b525d" opacity="0.45"/>
+  <circle cx="88" cy="43" r="3" fill="#5537eb"/>
+  <circle cx="42" cy="62" r="5" fill="#d4d8de"/>
+  <rect x="53" y="58" width="26" height="4" rx="2" fill="#4b525d" opacity="0.55"/>
+  <rect x="53" y="65" width="22" height="3" rx="1.5" fill="#4b525d" opacity="0.45"/>
+  
+  <circle cx="42" cy="81" r="5" fill="#d4d8de"/>
+  <rect x="53" y="77" width="22" height="4" rx="2" fill="#4b525d" opacity="0.55"/>
+  <rect x="53" y="84" width="22" height="3" rx="1.5" fill="#4b525d" opacity="0.45"/>
+  
+  <text x="128" y="49" class="mono mfg" font-size="12" letter-spacing="1.4">TRY IT TODAY</text>
+  <text x="127" y="82" class="sans fg" font-size="30" font-weight="700" letter-spacing="-0.6">Plannotator <tspan class="pri">Inbox</tspan></text>
+  <text x="128" y="104" class="mono mfg" font-size="13">plannotator.ai/inbox</text>
+  <path d="M438 32 L446 24 M440 24 L446 24 L446 30" fill="none" stroke="#4b525d" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
