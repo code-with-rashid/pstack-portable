@@ -4,3 +4,4 @@ cursor-team-kit
 Cursor built-in
 a Cursor built-in
 HOME/.claude/projects/\$slug
+HOME/\.cursor/projects/\$\(slash_slug

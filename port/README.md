@@ -55,9 +55,8 @@ file and line. Add a rule to `mappings.json`, or allow the line in
 
 A mapping survives upstream prose edits; an override freezes the file. Prefer a mapping. Reach
 for an override only when the portable version has to say something structurally different from
-upstream — currently just `setup-pstack`, which writes a plain config file to
-`~/.config/pstack/models.md` instead of a Cursor always-applied rule, and has to explain model
-roles rather than name Cursor router slugs.
+upstream. There are none today: upstream's `setup-pstack` and `worktree-audit.sh` learned other
+harnesses on their own, which retired the two overrides this fork used to carry.
 
 The build warns when an overridden file changed upstream, because that is the one place
 divergence is real and needs a human decision.
